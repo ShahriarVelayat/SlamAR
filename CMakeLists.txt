@@ -28,6 +28,7 @@ include_directories(${G2O_INCLUDE_DIRS})
 set( THIRD_PARTY_LIBS 
     ${OpenCV_LIBS}
     ${Sophus_LIBRARIES}
+    -L/usr/local/lib
     g2o_core g2o_stuff g2o_types_sba
 )
 
