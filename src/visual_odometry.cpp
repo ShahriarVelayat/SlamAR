@@ -169,10 +169,10 @@ void VisualOdometry::poseEstimationPnP()
 		Vector3d(tvec.at<double>(0, 0), tvec.at<double>(1, 0), tvec.at<double>(2, 0)));
 
 	// using bundle adjustment to optimize the pose
-	std::unique_ptr<g2o::BlockSolver_6_3::LinearSolverType> linearSolver;
-    linearSolver = g2o::make_unique<g2o::LinearSolverDense<g2o::BlockSolver_6_3::PoseMatrixType>>();
+	std::unique_ptr<g2o::BlockSolver<g2o::BlockSolverTraits<6, 2>>::LinearSolverType> linearSolver;
+    linearSolver = g2o::make_unique<g2o::LinearSolverDense<g2o::BlockSolver<g2o::BlockSolverTraits<6, 2>>::PoseMatrixType>>();
 	g2o::OptimizationAlgorithmLevenberg* solver = new g2o::OptimizationAlgorithmLevenberg(
-		g2o::make_unique<g2o::BlockSolver_6_3>(std::move(linearSolver))
+		g2o::make_unique<g2o::BlockSolver<g2o::BlockSolverTraits<6, 2>>>(std::move(linearSolver))
 	);
  	g2o::SparseOptimizer optimizer;
   	optimizer.setAlgorithm(solver);
