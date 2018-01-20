@@ -2,12 +2,8 @@ SlamAR -An open source, SLAM based augmented reality software.
 ================================
 
 # Dependencies
-## Ubuntu 14.04
-```
-sudo apt-get install build-essential libgtk2.0-dev libvtk5-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev libtbb-dev qtdeclarative5-dev qt5-qmake libqglviewer-dev libeigen3-dev libsuitesparse-dev libboost-all-dev
-```
 
-## macOS 10.13.2
+## eigen
 ```
 brew install eigen
 ```
@@ -25,13 +21,11 @@ brew install eigen
 - make -j4
 
 ## OpenCV
-- git clone https://github.com/opencv/opencv.git
-- cd opencv
-- mkdir build
-- cd build
-- cmake ..
-- make -j4
-- sudo make -j4 install
+- brew install vtk
+- brew edit opencv
+  - -DWITH_VTK=ON
+- brew install opencv --build-from-source
+- brew install opencv@2
 
 ## g2o
 - git clone https://github.com/RainerKuemmerle/g2o.git
@@ -50,6 +44,13 @@ brew install eigen
 - cmake ..
 - make -j4
 - sudo make -j4 install
+
+## boost
+- brew install boost
+
+# Make
+- cmake .
+- make -j4
 
 # TUM Dataset
 1. Download a RGB-D sequence from [TUM](http://vision.in.tum.de/data/datasets/rgbd-dataset/download), like fr1/xyz and change the parameter *dataset_dir* in the config/default.yaml file accordingly.  
